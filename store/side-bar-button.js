@@ -40,7 +40,7 @@ function lineMouseOut(sideBarButton, lines) {
 function pullOpenMenu(sideBarButton, sideBar, panels, exit) {
     sideBarButton.addEventListener('click', function() {
         // make sidebar width increase from nothing, by increasing width
-        sideBarButton.style.transitionDuration = '1000ms';
+        sideBarButton.style.transitionDuration = '500ms';
         sideBarButton.style.transform = 'rotate(90deg) scale(0.0)';
         sideBar.style.width = '200px';
         sideBar.style.transition = 'width 1000ms';
@@ -49,7 +49,7 @@ function pullOpenMenu(sideBarButton, sideBar, panels, exit) {
 
         for (let i = 0; i < panels.length; i++) {
             panels[i].style.display = 'flex';
-            panels[i].style.width = '190px';
+            panels[i].style.width = '185px';
             panels[i].style.transition = 'width 1000ms';
         }
     });
@@ -69,7 +69,7 @@ function closeMenu(sideBarButton, sideBar, panels, exit, divider) {
             panels[i].style.width = '0px';
             panels[i].style.transition = 'width 1000ms';
         }
-        // remove divider
+        // remove dividers
         for (let i = 0; i < divider.length; i++) {
             let bar = divider[i];
             bar.style.width = '0px';

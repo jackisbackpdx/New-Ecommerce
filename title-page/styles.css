@@ -1,0 +1,15 @@
+
+body {
+    background-image: url(../images/wooden-background.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96%;
+}
+html {
+    height: 100%;
+}
+img {
+    height: 200px;
+    width: 200px;
+}

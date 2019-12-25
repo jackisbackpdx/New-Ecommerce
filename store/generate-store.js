@@ -1,7 +1,9 @@
 import appArray from './app.js';
 import { mainMouseOver, mainMouseOut, lineMouseOver, lineMouseOut, pullOpenMenu, closeMenu } from './side-bar-button.js';
+import sideBarContent from './panels.js';
 
 const ul = document.querySelector('ul');
+let pricesArray = [];
 
 function renderApp(app) {
     const li = document.createElement('li');
@@ -22,8 +24,26 @@ function renderApp(app) {
         priceToString = app.price;
     }
     price.textContent = priceToString;
-    price.setAttribute('id', 'price');
+    pricesArray.push(priceToString);
+    price.setAttribute('class', 'price');
+    //event listner for price, add to cart
+    price.addEventListener('click', firstClick); 
+    
+    function firstClick() {
+        price.textContent = 'GET';
+        price.style.backgroundColor = 'green';
+        
+        price.addEventListener('click', secondClick());
+    }
+    
+    function secondClick() {
+        price.addEventListener('click', function() {
+            console.log('gotten');
+        });
+    }
+    
     li.appendChild(price);
+
     
     // setup the image using the relative link stored in the api
     const img = document.createElement('img');
@@ -61,14 +81,16 @@ lineMouseOver(sideBarButton, lines);
 lineMouseOut(sideBarButton, lines);
 
 
-const sideBarContent = ['Main Menu', 'Downloads', 'About Developer', 'Contact Us', 'Categories', '', ''];
-
 for (let i = 0; i < sideBarContent.length; i++) {
     let currentAppend = sideBarContent[i];
     let panel = document.createElement('p');
-    panel.textContent = currentAppend;
+    panel.textContent = currentAppend.title;
+    let anchor = document.createElement('a');
+    anchor.setAttribute('href', currentAppend.link);
+    anchor.classList.add('anchor');
     panel.classList.add('panel');
-    nav.appendChild(panel);
+    anchor.appendChild(panel);
+    nav.appendChild(anchor);
     // add separation after side bar content is genereated
     if ((i - 2) % 3 === 0) {
         const divider = document.createElement('div');
@@ -83,3 +105,19 @@ for (let i = 0; i < sideBarContent.length; i++) {
 const divider = document.getElementsByClassName('divider');
 pullOpenMenu(sideBarButton, nav, panels, exit);
 closeMenu(sideBarButton, nav, panels, exit, divider);
+
+document.addEventListener('click', function(e) {
+    let targetElement = e.target;
+    do {
+        if (targetElement.className === 'price') {
+            console.log('clicked inside');
+            return;
+        }
+        targetElement = targetElement.parentNode;
+    } while (targetElement);
+    let priceTag = document.getElementsByClassName('price');
+    for (let i = 0; i < priceTag.length; i++) {
+        priceTag[i].style.backgroundColor = 'silver';
+        priceTag[i].textContent = pricesArray[i];
+    }
+});
