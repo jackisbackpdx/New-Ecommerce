@@ -15,4 +15,4 @@ global.URLSearchParams = window.URLSearchParams;
 global.URL = window.URL;
 
 require = require('esm')(module);
-module.exports = require('../tests/tests.js');
+module.exports = require('./test/tests.js');
