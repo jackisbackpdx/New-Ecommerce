@@ -31,8 +31,6 @@ function renderApp(app) {
     //event listner for price, add to cart
     price.addEventListener('click', firstClick); 
     
-    let website = app.website;
-
     function firstClick() {
         if (price.style.backgroundColor === 'green') {
             price.textContent = 'WAIT';
