@@ -1,2 +1,2 @@
-import './app-store-tests.js';
+import './render-downloads.test.js';
 
