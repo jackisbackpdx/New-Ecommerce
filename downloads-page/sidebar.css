@@ -1,0 +1,108 @@
+#container {
+    height: 40px;
+    width: 40px;
+    background-color: black;
+    position: absolute;
+    left: 20px;
+    top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    position: fixed;
+    z-index: 1;
+
+}
+
+.line {
+    width: 90%;
+    height: 15%;
+    background-color: white;
+    border-radius: 20px;
+    z-index: 1;
+
+}
+
+#container:hover {
+    cursor: pointer;
+    z-index: 1;
+
+}
+
+nav {
+    position: absolute;
+    left: 0;
+    top: 25px;
+    width: 0px;
+    height: auto;
+    border-radius: 10px;
+    background-color: rgb(179, 180, 89); 
+    position: fixed;
+    z-index: 1;
+}
+
+.panel {
+  height: 30px;
+  border: 3px solid rgb(109, 120, 134);
+  border-radius: 5px;
+  margin: 3px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  display: none;
+  width: 0px;
+  background-color: rgb(255, 255, 255);
+  font-weight: bold;
+  z-index: 1;
+
+}  
+
+.anchor {
+  text-decoration: none;
+  color: black;
+  z-index: 1;
+
+}
+
+.panel:hover {
+  background-color: rgb(121, 121, 121);
+  cursor: pointer;
+}
+
+#exit {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 170px;
+  top: 32px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+}
+
+#mark1 {
+  margin-top: 11px;
+  width: 90%;
+  height: 5px;
+  background-color: black;
+  transform: rotate(45deg);
+  border-radius: 5px;
+}
+
+#mark2 {
+  margin-top: -5px;
+  width: 90%;
+  height: 5px;
+  background-color: black;
+  transform: rotate(-45deg);
+  border-radius: 5px;
+}
+
+
+#exit:hover {
+  cursor: pointer;
+  transform: rotate(90deg);
+  transition-duration: 300ms;
+  left: 167px;
+}

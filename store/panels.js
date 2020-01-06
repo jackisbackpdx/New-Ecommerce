@@ -4,7 +4,13 @@ const mainMenu = {
 };
 
 const downloads = {
-    title: 'Downloads'
+    title: 'Downloads',
+    link: '../downloads-page/index.html'
+};
+
+const appMenu = {
+    title: 'App Store',
+    link: '../store/index.html'
 };
 
 const aboutDeveloper = {
@@ -22,6 +28,7 @@ const categories = {
 const sideBarContent = [
     mainMenu,
     downloads,
+    appMenu,
     aboutDeveloper,
     contactUs,
     categories

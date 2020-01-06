@@ -9,7 +9,9 @@ const bank = {
         Track your Credit history, and credit score
         And many more!
     `,
-    category: 'banking'
+    category: 'banking',
+    website: 'https://www.chase.com/',
+    size: 22.9
 };
 
 const facebook = {
@@ -17,7 +19,9 @@ const facebook = {
     name: 'Facebook',
     price: 'FREE',
     description: `The world's most popular social networking site, Facebook enables users to connect with friends and family by sharing status updates, personal photos and other items of interest.`,
-    category: 'Social Media'
+    category: 'Social Media',
+    website: 'https://www.facebook.com/',
+    size: 23.4
 };
 
 const flickr = {
@@ -25,7 +29,9 @@ const flickr = {
     name: 'Flickr',
     price: 'FREE',
     description: `Popular photo-sharing and hosting service with advanced and powerful features. It supports and active and engaged community where people share and expolore each other's photos. You can share and host hundreds of your own pictures on Flickr without paying a dime.`,
-    category: 'Photo-Sharing'
+    category: 'Photo-Sharing',
+    website: 'https://www.flickr.com/',
+    size: 34.5
 };
 
 const instagram = {
@@ -33,7 +39,9 @@ const instagram = {
     name: 'Instagram',
     price: 'FREE',
     description: 'Instagram is a free, online photo-sharing application and social network platform. Instagram allows users to edit and upload photos and short videos through a mobile app.',
-    category: 'Photo-Sharing'
+    category: 'Photo-Sharing',
+    website: 'https://www.instagram.com/',
+    size: 32.33
 };
 
 const photoshop = {
@@ -41,15 +49,19 @@ const photoshop = {
     name: 'Photoshop',
     price: 19.99,
     description: 'Edit and create beautiful images and graphic design. Using layer-based editing, you can alter images with multiple overlays.',
-    category: 'Photo Editing'
+    category: 'Photo Editing',
+    website: 'https://www.photoshop.com/',
+    size: 28
 };
 
 const skyrim = {
-    image: '../images/skyrim-app.png',
+    image: '../images/skyrim-logo.png',
     name: 'Skyrim',
     price: 14.99,
     description: 'The Elder Scrolls V: Skyrim, the 2011 Game of the Year, is the next chapter in the highly anticipated Elder Scrolls sage. Developed by Bethesda Game Studios, the 2011 Studio of the Year, that brought you Oblivion and Fallout 3, Skyrim reimagines and revolutionizes the open world fantasy epic, bringing to life a complete virtual world open for you to explore any way you choose.',
-    category: 'Video Games'
+    category: 'Video Games',
+    website: 'https://elderscrolls.bethesda.net/en/skyrim',
+    size: 90
 };
 
 const snapchat = {
@@ -57,15 +69,18 @@ const snapchat = {
     name: 'Snapchat',
     price: 'FREE',
     description: 'Snapchat is the most fun way to share the moment! Take a Snap, add a caption or fun effects, then send it to your best friends.',
-    category: 'Social Media/Photo-Sharing'
+    category: 'Social Media/Photo-Sharing',
+    website: 'snapchat.com',
+    size: 35
 };
 
 const soundCloud = {
-    image: '../images/soundcloud-app.png',
+    image: '../images/soundcloud-logo.png',
     name: 'SoundCloud',
     price: 'FREE',
     description: `SoundCloud is the world's largest music and audio streaming platform - 200 million tracks and growing. With a buzzing community of artists and musicians constantly uploading new music, SoundCloud is where you can find the next big artists and musicians constantly uploading new music, SoundCloud is where you can find the next big artists alongside chart-topping albums, live sets, and mixes for every occasion.`,
-    category: 'Music Streaming'
+    category: 'Music Streaming',
+    size: 54.2
 };
 
 const spotify = {
@@ -73,7 +88,9 @@ const spotify = {
     name: 'Spotify',
     price: 'FREE',
     description: 'Spotify is the best way to listen to music and podcasts on mobile or tablet. Search for any track, artist or album and listen for free. Make and share playlists. Build your biggest, best ever music collection.',
-    category: 'Music Streaming'
+    category: 'Music Streaming',
+    website: 'https://www.spotify.com/us/',
+    size: 29.3
 };
 
 const youTube = {
@@ -81,7 +98,8 @@ const youTube = {
     name: 'YouTube',
     price: 'FREE',
     description: 'Make watching your favorite videos easier with the YouTube app. Explore brand new content, music, news and more with the YouTube app.',
-    category: 'Video Streaming'
+    category: 'Video Streaming',
+    size: 44.3
 };
 
 const appArrray = [
