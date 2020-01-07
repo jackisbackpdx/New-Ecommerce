@@ -27,9 +27,9 @@ function lineMouseOver(sideBarButton, lines) {
         });
     }
 }
+
 function lineMouseOut(sideBarButton, lines) {
     for (let i = 0; i < lines.length; i++) {
-
         lines[i].addEventListener('mouseout', function(e) {
             e.target.style.backgroundColor = 'white';
             sideBarButton.style.backgroundColor = 'black';

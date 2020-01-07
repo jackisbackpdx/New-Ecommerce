@@ -6,6 +6,7 @@ let json = JSON.parse(cart);
 let downloadBackDrop = document.querySelector('main');
 downloadBackDrop.style.height = '500px';
 window.scrollTo(0, 0);
+let listItems = [];
 
 if (!json) {
     let newPara = document.createElement('p');
@@ -14,12 +15,13 @@ if (!json) {
     downloadBackDrop.appendChild(newPara);
 }
 
-function eachItem(item) {
+function eachItem(item, i) {
     let titleAndImg = document.createElement('div');
 
     let panel = document.createElement('li');
     panel.classList.add('downloads');
-    panel.setAttribute('id', 'item');
+    let id = `item ${i}`;
+    panel.setAttribute('id', id);
 
     let title = document.createElement('h3');
     title.textContent = item.name;
@@ -51,12 +53,23 @@ function eachItem(item) {
     // setup and execution of mock loading bar
     let size = item.size;
     let counter = 0;
-    let increment = 30 / size;
+    let increment = 100 / size;
 
     const widthIncrement = increment * 3;
 
     let width = 0;
     outsideBar.style.width = width + 'px';
+
+    function shrinkDownload() {
+        panel.style.transitionDuration = '900ms';
+        panel.style.border = 'none';
+        panel.style.height = '0px';
+        panel.textContent = '';
+        panel.style.margin = 'none';
+        panel.style.padding = 'none';
+        panel.style.width = '489px';
+        console.log(panel);
+    }
 
     function increaseWidth() {
         setTimeout(function() {
@@ -67,6 +80,7 @@ function eachItem(item) {
                 outsideBar.style.width = width + 'px';
                 if (counter < 100) {
                     percentage.textContent = counter.toFixed(2) + '%';
+                    increaseWidth();
                 }
                 if (width > 300) {
                     outsideBar.style.width = '300px';
@@ -75,14 +89,42 @@ function eachItem(item) {
             if (counter > 100) {
                 percentage.textContent = '100%';
             }
-            increaseWidth();
+            if (percentage.textContent === '100%') {
+                shrinkDownload();
+                setTimeout(function() {
+                    panel.remove();
+                    addFinishedToLocalStorage(item);
+                }, 900);
+            }
         }, 100);    
     }
     increaseWidth();
+    listItems.push(panel);
+}
+
+function addFinishedToLocalStorage(item) {
+    let json = localStorage.getItem('FINISHED');
+    let finished;
+    if (json) {
+        finished = JSON.parse(json);
+    } else {
+        finished = [];
+
+    }
+
+    let finishedItem = {
+        name: item.name,
+        finished: true
+    };
+
+    finished.push(finishedItem);
+    
+    json = JSON.stringify(finished);
+    localStorage.setItem('FINISHED', json);
 }
 
 if (json) {
-    appendToMainAndAddHeight(json, downloadBackDrop, eachItem);
+    appendToMainAndAddHeight(json, downloadBackDrop, eachItem, listItems);
 } 
 ////////////////////////////////////////////////////////////////////////////////////////
 const sideBarButton = document.getElementById('container');

@@ -1,5 +1,6 @@
 function appendToMainAndAddHeight(arr, backDrop, generator) {
     let cartItemNumber = 0;
+    let iterator = 0;
     let sizeChange = 500;
     backDrop.style.height = sizeChange + 'px';
     arr.forEach((item) => {
@@ -8,7 +9,8 @@ function appendToMainAndAddHeight(arr, backDrop, generator) {
             sizeChange += 115;
             backDrop.style.height = sizeChange + 'px';
         }
-        generator(item);
+        iterator++;
+        generator(item, iterator);
     });
 }
 

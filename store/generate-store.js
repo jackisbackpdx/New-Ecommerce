@@ -167,8 +167,8 @@ const listenForOffOrOnClick = () => {
         for (let i = 0; i < priceTag.length; i++) {
             let currentTag = priceTag[i];
             let tagText = currentTag.textContent;
-            if (tagText === 'WAIT' || tagText === 'WAIT.' || tagText === 'WAIT..' || tagText === 'WAIT...') {
-                return;
+            if ((tagText === 'WAIT') || tagText === 'WAIT.' || tagText === 'WAIT..' || tagText === 'WAIT...') {
+                currentTag.backgroundColor = 'rgb(179, 180, 89)';
             } else {
                 currentTag.style.backgroundColor = 'silver';
                 currentTag.textContent = pricesArray[i];
