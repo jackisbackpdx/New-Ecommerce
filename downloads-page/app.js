@@ -68,7 +68,6 @@ function eachItem(item, i) {
         panel.style.margin = 'none';
         panel.style.padding = 'none';
         panel.style.width = '489px';
-        console.log(panel);
     }
 
     function increaseWidth() {

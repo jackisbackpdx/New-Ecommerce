@@ -6,16 +6,23 @@ import findById from './find-by-ids.js';
 const ul = document.querySelector('ul');
 let pricesArray = [];
 
+
+let finished = localStorage.getItem('FINISHED');
+let JSONFinished = JSON.parse(finished);
+
+
 function renderApp(app) {
     const li = document.createElement('li');
     li.classList = app.category;
     li.title = app.name;
-    
+        
     // setup title using the app name in the api
     const h3 = document.createElement('h3');
     h3.textContent = app.name;
     li.appendChild(h3);
     
+    // find if item is finished in downloads page 
+   
     // setup the price, and add a dollar sign if it's a number, else say 'FREE'
     const price = document.createElement('p');
     let priceToString;
@@ -28,6 +35,8 @@ function renderApp(app) {
     pricesArray.push(priceToString);
     price.setAttribute('class', 'price');
     price.classList.add('firstprice');
+    
+    
     //event listner for price, add to cart
     price.addEventListener('click', firstClick); 
     
@@ -60,7 +69,7 @@ function renderApp(app) {
         }
         // setting the shopping cart if app is added to downloads
         
-        if (price.style.backgroundColor === 'rgb(179, 180, 89)') {
+        if (price.textContent === 'WAIT') {
             let json = localStorage.getItem('CART');
             let cart;
             if (json) {
@@ -87,11 +96,30 @@ function renderApp(app) {
             localStorage.setItem('CART', json);
         }
     }
+
+    // if there is an array of finished downloads, this happens
+    // adds link to other page, removes event listener, and adds textContent of open
+
+    let trueCount = JSONFinished.length;
+    if (JSONFinished) {
+        for (let i = 0; i < JSONFinished.length; i++) {
+            if (JSONFinished[i].name === app.name) {
+                let a = document.createElement('a');
+                a.href = app.website;
+                localStorage.removeItem('CART');
+                trueCount--;
     
-    let link = document.createElement('a');
-    link.appendChild(price);
-    li.appendChild(link);
-    
+                price.style.backgroundColor = 'rgb(179, 180, 89)';
+                price.textContent = 'OPEN';
+                price.removeEventListener('click', firstClick, true);
+                a.appendChild(price);
+                li.appendChild(a);
+            } 
+        } 
+    }
+    if (trueCount === JSONFinished.length) {
+        li.appendChild(price);
+    }
     // setup the image using the relative link stored in the api
     const img = document.createElement('img');
     img.src = app.image;
@@ -167,7 +195,7 @@ const listenForOffOrOnClick = () => {
         for (let i = 0; i < priceTag.length; i++) {
             let currentTag = priceTag[i];
             let tagText = currentTag.textContent;
-            if ((tagText === 'WAIT') || tagText === 'WAIT.' || tagText === 'WAIT..' || tagText === 'WAIT...') {
+            if (tagText === 'OPEN' || (tagText === 'WAIT') || tagText === 'WAIT.' || tagText === 'WAIT..' || tagText === 'WAIT...') {
                 currentTag.backgroundColor = 'rgb(179, 180, 89)';
             } else {
                 currentTag.style.backgroundColor = 'silver';
