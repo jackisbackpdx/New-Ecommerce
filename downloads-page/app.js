@@ -5,11 +5,10 @@ const listAppender = document.querySelector('ul');
 let json = JSON.parse(cart);
 let downloadBackDrop = document.querySelector('main');
 downloadBackDrop.style.height = '500px';
-window.scrollTo(0, 0);
 let listItems = [];
+let newPara = document.createElement('p');
 
 if (!json) {
-    let newPara = document.createElement('p');
     newPara.textContent = 'Nothing in Downloads';
     newPara.classList.add('empty');
     downloadBackDrop.appendChild(newPara);
@@ -53,7 +52,7 @@ function eachItem(item, i) {
     // setup and execution of mock loading bar
     let size = item.size;
     let counter = 0;
-    let increment = 100 / size;
+    let increment = 55 / size;
 
     const widthIncrement = increment * 3;
 
@@ -69,7 +68,6 @@ function eachItem(item, i) {
         panel.style.padding = 'none';
         panel.style.width = '489px';
     }
-
     function increaseWidth() {
         setTimeout(function() {
             if (counter < 100) {
@@ -91,10 +89,24 @@ function eachItem(item, i) {
             if (percentage.textContent === '100%') {
                 shrinkDownload();
                 setTimeout(function() {
+                    listItems.pop(panel);
                     panel.remove();
                     addFinishedToLocalStorage(item);
+                    let backDropHeight = parseInt(downloadBackDrop.style.height);
+                    if (backDropHeight > 500) {
+                        backDropHeight -= 115;
+                        downloadBackDrop.style.height = backDropHeight + 'px';
+                    }
+                    localStorage.removeItem('CART');
                 }, 900);
             }
+            if (listItems.length === 0) {
+                console.log('empty');
+                newPara.textContent = 'Nothing in Downloads';
+                newPara.classList.add('empty');
+                downloadBackDrop.appendChild(newPara);
+            }
+            console.log('yuh');
         }, 100);    
     }
     increaseWidth();
@@ -166,5 +178,3 @@ for (let i = 0; i < sideBarContent.length; i++) {
 const divider = document.getElementsByClassName('divider');
 pullOpenMenu(sideBarButton, nav, panels, exit);
 closeMenu(sideBarButton, nav, panels, exit, divider);
-
-

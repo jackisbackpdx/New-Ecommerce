@@ -43,7 +43,6 @@ function pullOpenMenu(sideBarButton, sideBar, panels, exit) {
         sideBarButton.style.transitionDuration = '500ms';
         sideBarButton.style.transform = 'rotate(90deg) scale(0.0)';
         sideBar.style.width = '200px';
-        sideBar.style.transition = 'width 1000ms';
         // show exit button 
         exit.style.display = 'initial';
 
@@ -57,17 +56,15 @@ function pullOpenMenu(sideBarButton, sideBar, panels, exit) {
 
 function closeMenu(sideBarButton, sideBar, panels, exit, divider) {
     exit.addEventListener('click', function() {
-        sideBarButton.style.transitionDuration = '1000ms';
+        sideBarButton.style.transitionDuration = '500ms';
         sideBarButton.style.transform = 'rotate(0deg) scale(1.0)';
         sideBar.style.width = '0px';
-        sideBar.style.transition = 'width 1000ms';
         // show exit button 
         exit.style.display = 'none';
         // remove panels
         for (let i = 0; i < panels.length; i++) {
             panels[i].style.display = 'none';
-            panels[i].style.width = '0px';
-            panels[i].style.transition = 'width 1000ms';
+            panels[i].style.width = '0px';      
         }
         // remove dividers
         for (let i = 0; i < divider.length; i++) {

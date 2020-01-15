@@ -41,7 +41,7 @@ img:hover {
 }
 
 body {
-    background-color: rgb(109, 120, 134);
+    background-color: silver;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -115,7 +115,6 @@ main {
       height: 40px;
       width: 40px;
       background-color: black;
-      position: absolute;
       left: 20px;
       top: 25px;
       display: flex;
@@ -124,6 +123,7 @@ main {
       align-items: center;
       border-radius: 10px;
       position: fixed;
+      
   }
 
   .line {
@@ -210,4 +210,15 @@ main {
 
 a {
     color: black;
+}
+
+#download-number {
+    margin-left: 80px;
+    background-color: red;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

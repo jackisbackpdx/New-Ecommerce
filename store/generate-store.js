@@ -6,10 +6,9 @@ import findById from './find-by-ids.js';
 const ul = document.querySelector('ul');
 let pricesArray = [];
 
-
 let finished = localStorage.getItem('FINISHED');
 let JSONFinished = JSON.parse(finished);
-
+let numberToAppend = 0;
 
 function renderApp(app) {
     const li = document.createElement('li');
@@ -36,7 +35,6 @@ function renderApp(app) {
     price.setAttribute('class', 'price');
     price.classList.add('firstprice');
     
-    
     //event listner for price, add to cart
     price.addEventListener('click', firstClick); 
     
@@ -61,6 +59,7 @@ function renderApp(app) {
                 }, 300);
             };
             increaseDots();
+            
         }
         if (price.textContent === priceToString) {
             price.textContent = 'GET';
@@ -70,6 +69,21 @@ function renderApp(app) {
         // setting the shopping cart if app is added to downloads
         
         if (price.textContent === 'WAIT') {
+            if (numberToAppend === 0) {
+                let navBarParagraphs = document.querySelectorAll('nav a p');
+                let navBarDownloads = navBarParagraphs[1];
+                let numberSpot = document.createElement('p');
+
+                numberToAppend++;
+                numberSpot.textContent = numberToAppend;
+                numberSpot.setAttribute('id', 'download-number');
+                navBarDownloads.appendChild(numberSpot);
+            } else if (numberToAppend > 0) {
+                numberToAppend++;
+                let numberSpot = document.getElementById('download-number');
+                numberSpot.textContent = numberToAppend;
+            }
+
             let json = localStorage.getItem('CART');
             let cart;
             if (json) {
@@ -94,19 +108,19 @@ function renderApp(app) {
             }
             json = JSON.stringify(cart);
             localStorage.setItem('CART', json);
+            
         }
     }
 
-    // if there is an array of finished downloads, this happens
-    // adds link to other page, removes event listener, and adds textContent of open
+    // If there is an array of finished downloads, this happens
+    // Adds link to other page, removes event listener, and adds textContent of open
 
-    let trueCount = JSONFinished.length;
     if (JSONFinished) {
+        let trueCount = JSONFinished.length;
         for (let i = 0; i < JSONFinished.length; i++) {
             if (JSONFinished[i].name === app.name) {
                 let a = document.createElement('a');
                 a.href = app.website;
-                localStorage.removeItem('CART');
                 trueCount--;
     
                 price.style.backgroundColor = 'rgb(179, 180, 89)';
@@ -116,9 +130,14 @@ function renderApp(app) {
                 li.appendChild(a);
             } 
         } 
+        if (trueCount === JSONFinished.length) {
+            li.appendChild(price);
+        }
     }
-    if (trueCount === JSONFinished.length) {
+
+    if (!JSONFinished) {
         li.appendChild(price);
+        
     }
     // setup the image using the relative link stored in the api
     const img = document.createElement('img');
@@ -168,7 +187,6 @@ for (let i = 0; i < sideBarContent.length; i++) {
         const divider = document.createElement('div');
         divider.style.width = '200px';
         divider.style.height = '20px';
-        divider.style.backgroundColor = 'rgb(109, 120, 134)';
         divider.classList.add('divider');
         nav.appendChild(divider);
     }
